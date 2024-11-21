@@ -32,12 +32,12 @@ public class ClienteController {
         return new ResponseEntity<>(clienteService.criarCliente(cliente), HttpStatus.CREATED);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Cliente> buscarPorId(@PathVariable String id) {
-        return ResponseEntity.ok(clienteService.buscarPorId(id));
+    @GetMapping("/<cliente_uuid>")
+    public ResponseEntity<Cliente> buscarClientePorId(@PathVariable String id) {
+        return ResponseEntity.ok(clienteService.buscarClientePorId(id));
     }
 
-    @GetMapping
+    @GetMapping("/lista")
     public ResponseEntity<List<ClienteDTO>> listarClientes() {
         List<ClienteDTO> clientes = clienteService.listarClientes()
                 .stream()
@@ -54,7 +54,7 @@ public class ClienteController {
         return ResponseEntity.ok(clientes);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/<cliente_uuid>")
     public ResponseEntity<Void> deletarCliente(@PathVariable String id) {
         clienteService.deletarCliente(id);
         return ResponseEntity.noContent().build();

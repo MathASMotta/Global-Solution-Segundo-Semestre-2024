@@ -16,21 +16,25 @@ public class ClienteService {
         this.clienteRepository = clienteRepository;
     }
 
+    // POST
     public Cliente criarCliente(Cliente cliente) {
         return clienteRepository.save(cliente);
     }
 
-    public Cliente buscarPorId(String clienteUuid) {
+    // GET
+    public Cliente buscarClientePorId(String clienteUuid) {
         return clienteRepository.findById(clienteUuid)
                 .orElseThrow(() -> new ResourceNotFoundException("Cliente não encontrado"));
     }
 
+    // GET
     public List<Cliente> listarClientes() {
         return clienteRepository.findAll();
     }
 
+    // DELETE
     public void deletarCliente(String clienteUuid) {
-        Cliente cliente = buscarPorId(clienteUuid);
+        Cliente cliente = buscarClientePorId(clienteUuid);
         cliente.setAtivo(false);
         clienteRepository.save(cliente);
     }

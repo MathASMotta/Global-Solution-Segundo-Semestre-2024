@@ -3,8 +3,12 @@ package br.com.fiap.globalsolution.GerenciamentoDeInfraestrutura.entity;
 import java.util.UUID;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name = "instalacao")
 public class Instalacao {
     
     @Id
@@ -18,13 +22,13 @@ public class Instalacao {
     private String cep;
 
     @Column(name = "ativo", nullable = false)
-    private boolean ativo = true;
-
-    // Getters e setters
+    private Boolean ativo;
 
     public Instalacao() {
         this.instalacaoUuid = UUID.randomUUID().toString();
     }
+
+    // Getters e Setters
 
     public String getEndereco() {
         return endereco;
@@ -38,7 +42,7 @@ public class Instalacao {
         return cep;
     }
 
-    public void setCpe(String cep) {
+    public void setCep(String cep) {
         this.cep = cep;
     }
 

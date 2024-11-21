@@ -1,78 +1,75 @@
 package br.com.fiap.globalsolution.GerenciamentoDeInfraestrutura.entity;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
-
-import org.hibernate.id.uuid.UuidGenerator;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 
 public class Contrato {
-    
+
     @Id
     @Column(name = "contratoUuid", updatable = false, nullable = false)
     private String contratoUuid;
 
-    @Column(name = "cliente", nullable = false)
-    private Cliente cliente;
+    @Column(name = "instalacaoUuid", nullable = false)
+    private String instalacaoUuid;
 
-    @Column(name = "instalacao", nullable = false)
-    private Instalacao instalacao;
+    @Column(name = "clienteUuid", nullable = false)
+    private String clienteUuid;
 
-    @Column(name = "dataInicio", nullable = false)
-    private LocalDate dataInicio;
+    @Column(name = "timeframe", nullable = false)
+    private int timeframe;
 
-    @Column(name = "duracaoDias", nullable = false)
-    private int duracaoDias;
+    @Column(name = "status", nullable = false)
+    private Boolean status;
 
-    @Column(name = "ativo", nullable = false)
-    private Boolean ativo = true;
-
-    // Getters e setters
+    @Column(name = "timestamp", nullable = false)
+    private LocalDateTime timestamp;
 
     public Contrato() {
         this.contratoUuid = UUID.randomUUID().toString();
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    // Getters e Setters
+    public String getInstalacaoUuid() {
+        return instalacaoUuid;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setInstalacaoUuid(String instalacaoUuid) {
+        this.instalacaoUuid = instalacaoUuid;
     }
 
-    public Instalacao getInstalacao() {
-        return instalacao;
+    public String getClienteUuid() {
+        return clienteUuid;
     }
 
-    public void setInstalacao(Instalacao instalacao) {
-        this.instalacao = instalacao;
+    public void setClienteUuid(String clienteUuid) {
+        this.clienteUuid = clienteUuid;
     }
 
-    public LocalDate getDataInicio() {
-        return dataInicio;
+    public int getTimeframe() {
+        return timeframe;
     }
 
-    public void setDataInicio(LocalDate dataInicio) {
-        this.dataInicio = dataInicio;
+    public void setTimeframe(int timeframe) {
+        this.timeframe = timeframe;
     }
 
-    public int getDuracaoDias() {
-        return duracaoDias;
+    public Boolean getStatus() {
+        return status;
     }
 
-    public void setDuracaoDias(int duracaoDias) {
-        this.duracaoDias = duracaoDias;
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
 
-    public Boolean getAtivo() {
-        return ativo;
+    public LocalDateTime getTimestamp() {
+        return timestamp;
     }
 
-    public void setAtivo(Boolean ativo) {
-        this.ativo = ativo;
+    public void setTimestamp(LocalDateTime timestamp) {
+        this.timestamp = timestamp;
     }
 
 }
