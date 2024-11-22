@@ -185,21 +185,6 @@ EXEMPLO: INPUT
 }
 ```
 
-## Testes
-### Executando Testes
-Para rodar os testes unitários e de integração, use o comando:
-
-```bash
-mvn test
-```
-
-### Cobertura de Testes
-Os testes cobrem:
-
-- Controladores REST
-- Lógica de negócios nos serviços
-- Interações com repositórios JPA
-
 ## Tecnologias Utilizadas
 - Java 21
 - Spring Boot
