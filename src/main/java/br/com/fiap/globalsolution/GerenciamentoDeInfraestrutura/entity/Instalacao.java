@@ -1,29 +1,40 @@
 package br.com.fiap.globalsolution.GerenciamentoDeInfraestrutura.entity;
 
-import java.util.UUID;
-
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name = "INSTALACAO")
 public class Instalacao {
     
     @Id
-    @Column(name = "instalacaoUuid", updatable = false, nullable = false)
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "INSTALACAO_UUID", updatable = false, nullable = false)
     private String instalacaoUuid;
 
-    @Column(name = "endereco", nullable = false)
+    @Column(name = "ENDERECO", nullable = false)
     private String endereco;
 
-    @Column(name = "cep", nullable = false)
+    @Column(name = "CEP", nullable = false)
     private String cep;
 
-    @Column(name = "ativo", nullable = false)
-    private boolean ativo = true;
-
-    // Getters e setters
+    @Column(name = "ATIVO", nullable = false)
+    private Boolean ativo;
 
     public Instalacao() {
-        this.instalacaoUuid = UUID.randomUUID().toString();
+    }
+
+    // Getters e Setters
+    public String getInstalacaoUuid() {
+        return instalacaoUuid;
+    }
+    
+    public void setInstalacaoUuid(String instalacaoUuid) {
+        this.instalacaoUuid = instalacaoUuid;
     }
 
     public String getEndereco() {
@@ -38,7 +49,7 @@ public class Instalacao {
         return cep;
     }
 
-    public void setCpe(String cep) {
+    public void setCep(String cep) {
         this.cep = cep;
     }
 

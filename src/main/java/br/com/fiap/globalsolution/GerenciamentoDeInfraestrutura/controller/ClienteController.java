@@ -32,31 +32,27 @@ public class ClienteController {
         return new ResponseEntity<>(clienteService.criarCliente(cliente), HttpStatus.CREATED);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Cliente> buscarPorId(@PathVariable String id) {
-        return ResponseEntity.ok(clienteService.buscarPorId(id));
+    @GetMapping("/{uuid}")
+    public ResponseEntity<Cliente> buscarClientePorUuid(@PathVariable String uuid) {
+        return clienteService.buscarPorUuid(uuid)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
-    @GetMapping
-    public ResponseEntity<List<ClienteDTO>> listarClientes() {
-        List<ClienteDTO> clientes = clienteService.listarClientes()
+    @GetMapping("/lista")
+    public ResponseEntity<List<Cliente>> listarClientes() {
+        List<Cliente> clientes = clienteService.listarClientes()
                 .stream()
                 .map(cliente -> {
-                    ClienteDTO dto = new ClienteDTO();
-                    dto.setNome(cliente.getNome());
-                    dto.setEndereco(cliente.getEndereco());
-                    dto.setDocumento(cliente.getDocumento());
-                    dto.setTipoCliente(cliente.getTipoCliente());
-                    dto.setCep(cliente.getCep());
-                    return dto;
+                    return cliente;
                 })
                 .collect(Collectors.toList());
         return ResponseEntity.ok(clientes);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletarCliente(@PathVariable String id) {
-        clienteService.deletarCliente(id);
+    @DeleteMapping("/{uuid}")
+    public ResponseEntity<Void> deletarCliente(@PathVariable String uuid) {
+        clienteService.deletarCliente(uuid);
         return ResponseEntity.noContent().build();
     }
 }
