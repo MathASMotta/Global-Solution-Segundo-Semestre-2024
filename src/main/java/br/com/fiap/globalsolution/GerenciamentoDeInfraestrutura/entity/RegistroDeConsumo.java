@@ -1,38 +1,47 @@
 package br.com.fiap.globalsolution.GerenciamentoDeInfraestrutura.entity;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "registroDeConsumo")
+@Table(name = "REGISTRO_CONSUMO")
 public class RegistroDeConsumo {
 
     @Id
-    @Column(name = "registroConsumoUuid", updatable = false, nullable = false)
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "REGISTRO_CONSUMO_UUID", updatable = false, nullable = false)
     private String registroConsumoUuid;
 
-    @Column(name = "instalacaoUuid", nullable = false)
+    @Column(name = "INSTALACAO_UUID", nullable = false)
     private String instalacaoUuid;
     
-    @Column(name = "consumoKWH", nullable = false)
+    @Column(name = "CONSUMO_KWH", nullable = false)
     private double consumoKWH;
     
-    @Column(name = "medicaoTimestamp", nullable = false)
+    @Column(name = "MEDICAO_TIMESTAMP", nullable = false)
     private LocalDateTime medicaoTimestamp;
     
-    @Column(name = "createdAt", nullable = false)
+    @Column(name = "CREATED_AT", nullable = false)
     private LocalDateTime createdAt;
 
     public RegistroDeConsumo() {
-        this.registroConsumoUuid = UUID.randomUUID().toString();
     }
 
     // Getters e Setters
+    public String getRegistroConsumoUuid() {
+        return registroConsumoUuid;
+    }
+    
+    public void setRegistroConsumoUuid(String registroConsumoUuid) {
+        this.registroConsumoUuid = registroConsumoUuid;
+    }
+    
     public String getInstalacaoUuid() {
         return instalacaoUuid;
     }

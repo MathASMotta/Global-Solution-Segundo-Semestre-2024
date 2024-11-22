@@ -9,5 +9,5 @@ import br.com.fiap.globalsolution.GerenciamentoDeInfraestrutura.entity.RegistroD
 
 @Repository
 public interface RegistroDeProducaoRepository extends JpaRepository<RegistroDeProducao, String> {
-    Optional<RegistroDeProducao> findByUuid(String registroProducaoUuid);
+    Optional<RegistroDeProducao> findByRegistroProducaoUuid(String registroProducaoUuid);
 }

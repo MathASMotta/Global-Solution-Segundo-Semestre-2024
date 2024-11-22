@@ -1,39 +1,49 @@
 package br.com.fiap.globalsolution.GerenciamentoDeInfraestrutura.entity;
 
 import jakarta.persistence.*;
-import java.util.UUID;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "cliente")
+@Table(name = "CLIENTES")
 public class Cliente {
 
     @Id
-    @Column(name = "cliente_uuid", updatable = false, nullable = false)
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "CLIENTE_UUID", updatable = false, nullable = false)
     private String clienteUuid;
 
-    @Column(name = "nome", nullable = false)
+    @Column(name = "NOME", nullable = false)
     private String nome;
 
-    @Column(name = "endereco", nullable = false)
+    @Column(name = "ENDERECO", nullable = false)
     private String endereco;
 
-    @Column(name = "documento", nullable = false, unique = true)
+    @Column(name = "DOCUMENTO", nullable = false, unique = true)
+    @NotBlank(message = "O documento é obrigatório")
+    @Size(min = 11, max = 14, message = "O documento deve ter entre 11 e 14 caracteres")
     private String documento;
 
-    @Column(name = "tipo_cliente", nullable = false)
+    @Column(name = "TIPO", nullable = false)
     private String tipoCliente;
 
-    @Column(name = "cep", nullable = false)
+    @Column(name = "CEP", nullable = false)
     private String cep;
 
-    @Column(name = "ativo", nullable = false)
+    @Column(name = "ATIVO", nullable = false)
     private Boolean ativo;
 
-    public Cliente() {
-        this.clienteUuid = UUID.randomUUID().toString();
+    public Cliente() {    
     }
 
     // Getters e Setters
+    public String getClienteUuid() {
+        return clienteUuid;
+    }
+    
+    public void setClienteUuid(String clienteUuid) {
+        this.clienteUuid = clienteUuid;
+    }
 
     public String getNome() {
         return nome;

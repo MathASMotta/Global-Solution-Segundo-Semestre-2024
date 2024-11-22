@@ -29,28 +29,27 @@ public class InstalacaoController {
         return new ResponseEntity<>(instalacaoService.criarInstalacao(instalacao), HttpStatus.CREATED);
     }
 
-    @GetMapping("/<instalacaoUuid>")
-    public ResponseEntity<Instalacao> buscarInstalacaoPorId(@PathVariable String id) {
-        return ResponseEntity.ok(instalacaoService.buscarInstalacaoPorId(id));
+    @GetMapping("/{uuid}")
+    public ResponseEntity<Instalacao> buscarInstalacaoPorId(@PathVariable String uuid) {
+        return instalacaoService.buscarPorUuid(uuid)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @GetMapping("/lista")
-    public ResponseEntity<List<InstalacaoDTO>> listarInstalacoes() {
-        List<InstalacaoDTO> instalacoes = instalacaoService.listarIntalacoes()
+    public ResponseEntity<List<Instalacao>> listarInstalacoes() {
+        List<Instalacao> instalacoes = instalacaoService.listarIntalacoes()
                 .stream()
                 .map(instalacao -> {
-                    InstalacaoDTO dto = new InstalacaoDTO();
-                    dto.setEndereco(instalacao.getEndereco());
-                    dto.setCep(instalacao.getCep());
-                    return dto;
+                    return instalacao;
                 })
                 .collect(Collectors.toList());
         return ResponseEntity.ok(instalacoes);
     }
 
-    @DeleteMapping("/<instalacao_uuid>")
-    public ResponseEntity<Void> deletarInstalacao(@PathVariable String id) {
-        instalacaoService.deletarInstalacao(id);
+    @DeleteMapping("/{uuid}")
+    public ResponseEntity<Void> deletarInstalacao(@PathVariable String uuid) {
+        instalacaoService.deletarInstalacao(uuid);
         return ResponseEntity.noContent().build();
     }
 

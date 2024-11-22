@@ -1,37 +1,50 @@
 package br.com.fiap.globalsolution.GerenciamentoDeInfraestrutura.entity;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name = "CONTRATO")
 public class Contrato {
 
     @Id
-    @Column(name = "contratoUuid", updatable = false, nullable = false)
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "CONTRATO_UUID", updatable = false, nullable = false)
     private String contratoUuid;
 
-    @Column(name = "instalacaoUuid", nullable = false)
+    @Column(name = "INSTALACAO_UUID", nullable = false)
     private String instalacaoUuid;
 
-    @Column(name = "clienteUuid", nullable = false)
+    @Column(name = "CLIENTE_UUID", nullable = false)
     private String clienteUuid;
 
-    @Column(name = "timeframe", nullable = false)
+    @Column(name = "TIMEFRAME", nullable = false)
     private int timeframe;
 
-    @Column(name = "status", nullable = false)
+    @Column(name = "STATUS", nullable = false)
     private Boolean status;
 
-    @Column(name = "timestamp", nullable = false)
+    @Column(name = "CONTRATO_INICIO_TIMESTAMP", nullable = false)
     private LocalDateTime timestamp;
 
     public Contrato() {
-        this.contratoUuid = UUID.randomUUID().toString();
     }
 
     // Getters e Setters
+    public String getContratoUuid() {
+        return contratoUuid;
+    }
+    
+    public void setContratoUuid(String contratoUuid) {
+        this.contratoUuid = contratoUuid;
+    }
+
     public String getInstalacaoUuid() {
         return instalacaoUuid;
     }

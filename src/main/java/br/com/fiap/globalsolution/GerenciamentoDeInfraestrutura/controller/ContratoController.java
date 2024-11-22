@@ -25,6 +25,7 @@ public class ContratoController {
     public ContratoController(ContratoService contratoService) {
         this.contratoService = contratoService;
     }
+    
 
     @PostMapping
     public ResponseEntity<Contrato> criarContrato(@RequestBody ContratoDTO contratoDTO) {
@@ -37,14 +38,17 @@ public class ContratoController {
         return new ResponseEntity<>(contratoService.criarContrato(contrato), HttpStatus.CREATED);
     }
 
-    @GetMapping("/<contratoUuid>")
-    public ResponseEntity<Contrato> buscarContratoPorId(@PathVariable String id) {
-        return ResponseEntity.ok(contratoService.buscarContratoPorId(id));
+
+    @GetMapping("/{uuid}")
+    public ResponseEntity<Contrato> buscarContratoPorId(@PathVariable String uuid) {
+        return contratoService.buscarPorUuid(uuid)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
-    @DeleteMapping
-    public ResponseEntity<Void> deletarContrato(@PathVariable String id) {
-        contratoService.deletraContrato(id);
+    @DeleteMapping("/{uuid}")
+    public ResponseEntity<Void> deletarContrato(@PathVariable String uuid) {
+        contratoService.deletarContrato(uuid);
         return ResponseEntity.noContent().build();
     }
 

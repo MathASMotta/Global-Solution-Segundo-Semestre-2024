@@ -35,9 +35,11 @@ public class RegistroDeConsumoController {
         return new ResponseEntity<>(registroDeConsumoService.criarRegistro(registro), HttpStatus.CREATED);
     }
 
-    @GetMapping("/<instalacaoUuid>")
-    public ResponseEntity<RegistroDeConsumo> buscarRegistroPorId(@PathVariable String id) {
-        return ResponseEntity.ok(registroDeConsumoService.buscarRegistroPorId(id));
+    @GetMapping("/{uuid}")
+    public ResponseEntity<RegistroDeConsumo> buscarRegistroPorId(@PathVariable String uuid) {
+        return registroDeConsumoService.buscarRegistroPorId(uuid)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
 }

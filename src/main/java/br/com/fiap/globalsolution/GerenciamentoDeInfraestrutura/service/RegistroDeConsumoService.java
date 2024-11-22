@@ -1,9 +1,10 @@
 package br.com.fiap.globalsolution.GerenciamentoDeInfraestrutura.service;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
 import br.com.fiap.globalsolution.GerenciamentoDeInfraestrutura.entity.RegistroDeConsumo;
-import br.com.fiap.globalsolution.GerenciamentoDeInfraestrutura.exception.ResourceNotFoundException;
 import br.com.fiap.globalsolution.GerenciamentoDeInfraestrutura.repository.RegistroDeConsumoRepository;
 
 @Service
@@ -21,9 +22,8 @@ public class RegistroDeConsumoService {
     }
 
     // GET
-    public RegistroDeConsumo buscarRegistroPorId(String registroDeConsumoUuid) {
-        return registroDeConsumoRepository.findById(registroDeConsumoUuid)
-                .orElseThrow(() -> new ResourceNotFoundException("Registro não encontrado"));
+    public Optional<RegistroDeConsumo> buscarRegistroPorId(String registroDeConsumoUuid) {
+        return registroDeConsumoRepository.findByRegistroConsumoUuid(registroDeConsumoUuid);
     }
 
 }

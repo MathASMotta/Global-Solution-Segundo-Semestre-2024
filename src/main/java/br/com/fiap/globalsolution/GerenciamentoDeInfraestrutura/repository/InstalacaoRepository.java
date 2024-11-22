@@ -9,5 +9,5 @@ import br.com.fiap.globalsolution.GerenciamentoDeInfraestrutura.entity.Instalaca
 
 @Repository
 public interface InstalacaoRepository extends JpaRepository<Instalacao, String> {
-    Optional<Instalacao> findByUuid(String instalacaoUuid);
+    Optional<Instalacao> findByInstalacaoUuid(String instalacaoUuid);
 }

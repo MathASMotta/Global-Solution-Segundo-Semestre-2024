@@ -1,11 +1,11 @@
 package br.com.fiap.globalsolution.GerenciamentoDeInfraestrutura.service;
 
 import br.com.fiap.globalsolution.GerenciamentoDeInfraestrutura.entity.Cliente;
-import br.com.fiap.globalsolution.GerenciamentoDeInfraestrutura.exception.ResourceNotFoundException;
 import br.com.fiap.globalsolution.GerenciamentoDeInfraestrutura.repository.ClienteRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ClienteService {
@@ -22,9 +22,8 @@ public class ClienteService {
     }
 
     // GET
-    public Cliente buscarClientePorId(String clienteUuid) {
-        return clienteRepository.findById(clienteUuid)
-                .orElseThrow(() -> new ResourceNotFoundException("Cliente não encontrado"));
+    public Optional<Cliente> buscarPorUuid(String clienteUuid) {
+        return clienteRepository.findByClienteUuid(clienteUuid);
     }
 
     // GET
@@ -34,8 +33,6 @@ public class ClienteService {
 
     // DELETE
     public void deletarCliente(String clienteUuid) {
-        Cliente cliente = buscarClientePorId(clienteUuid);
-        cliente.setAtivo(false);
-        clienteRepository.save(cliente);
+        clienteRepository.deleteById(clienteUuid);
     }
 }

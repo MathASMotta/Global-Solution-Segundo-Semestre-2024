@@ -9,5 +9,5 @@ import br.com.fiap.globalsolution.GerenciamentoDeInfraestrutura.entity.RegistroD
 
 @Repository
 public interface RegistroDeConsumoRepository extends JpaRepository<RegistroDeConsumo, String> {
-    Optional<RegistroDeConsumo> findByUuid(String registroConsumoUuid);
+    Optional<RegistroDeConsumo> findByRegistroConsumoUuid(String registroConsumoUuid);
 }

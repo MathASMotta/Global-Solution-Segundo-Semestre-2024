@@ -9,5 +9,5 @@ import br.com.fiap.globalsolution.GerenciamentoDeInfraestrutura.entity.Contrato;
 
 @Repository
 public interface ContratoRepository extends JpaRepository<Contrato, String> {
-    Optional<Contrato> findByUuid(String contratoUuid);
+    Optional<Contrato> findByContratoUuid(String contratoUuid);
 }

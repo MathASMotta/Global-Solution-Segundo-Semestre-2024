@@ -1,8 +1,8 @@
 package br.com.fiap.globalsolution.GerenciamentoDeInfraestrutura.service;
 
+import java.util.Optional;
 import org.springframework.stereotype.Service;
 
-import br.com.fiap.globalsolution.GerenciamentoDeInfraestrutura.exception.ResourceNotFoundException;
 import br.com.fiap.globalsolution.GerenciamentoDeInfraestrutura.repository.ContratoRepository;
 import br.com.fiap.globalsolution.GerenciamentoDeInfraestrutura.entity.Contrato;
 
@@ -20,17 +20,12 @@ public class ContratoService {
     }
 
     //GET
-    public Contrato buscarContratoPorId(String contratoUuid) {
-        return contratoRepository.findById(contratoUuid)
-                .orElseThrow(() -> new ResourceNotFoundException("Contrato não encontrado"));
+    public Optional<Contrato> buscarPorUuid(String contratoUuid) {
+        return contratoRepository.findByContratoUuid(contratoUuid);
     }
 
     // DELETE
-    public void deletraContrato(String contratoUuid) {
-        Contrato contrato = buscarContratoPorId(contratoUuid);
-        contrato.setStatus(false);
-        contratoRepository.save(contrato);
+    public void deletarContrato(String contratoUuid) {
+        contratoRepository.deleteById(contratoUuid);
     }
-
-
 }
