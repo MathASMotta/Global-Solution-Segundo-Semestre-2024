@@ -37,7 +37,6 @@ GLOBAL-SOLUTION-SEGUNDO-SEMESTRE-2024/
 Edite o arquivo application.properties com suas credenciais de banco de dados:
 
 ```properties
-Copiar código
 spring.datasource.url=jdbc:postgresql://localhost:5432/infra_db
 spring.datasource.username=seu_usuario
 spring.datasource.password=sua_senha
@@ -49,20 +48,17 @@ spring.jpa.show-sql=true
 Clone o repositório:
 
 ```bash
-Copiar código
 git clone https://github.com/MathASMotta/Global-Solution-Segundo-Semestre-2024.git
 cd Global-Solution-Segundo-Semestre-2024
 ```
 Compile o projeto:
 
 ```bash
-Copiar código
 mvn clean install
 ```
 Inicie a aplicação:
 
 ```bash
-Copiar código
 mvn spring-boot:run
 ```
 Acesse a API:
