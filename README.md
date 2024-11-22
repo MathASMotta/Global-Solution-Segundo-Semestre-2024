@@ -1,5 +1,10 @@
 # Global-Solution-Segundo-Semestre-2024
 
+## Membros do Projeto
+- Matheus Gusmão - 550826
+- Matheus Motta - 550352 
+- Guilherme Morais - 551981
+
 ## Descrição do Projeto
 O Global Solution - Gerenciamento de Infraestrutura é uma aplicação Spring Boot desenvolvida como parte do projeto acadêmico para o segundo semestre de 2024. O objetivo é fornecer uma solução para gerenciamento eficiente de infraestrutura elétrica, permitindo o controle de clientes, contratos, instalações, registros de consumo e produção.
 
@@ -30,9 +35,9 @@ GLOBAL-SOLUTION-SEGUNDO-SEMESTRE-2024/
 
 ## Configuração do Ambiente
 ### Pré-requisitos
-- Java 17 ou superior
+- Java 21
 - Maven 3.8+
-- Banco de Dados PostgreSQL
+- Oracle SQL Developer
 ### Configurações de Banco de Dados
 Edite o arquivo application.properties com suas credenciais de banco de dados:
 
