@@ -42,7 +42,7 @@ GLOBAL-SOLUTION-SEGUNDO-SEMESTRE-2024/
 Edite o arquivo application.properties com suas credenciais de banco de dados:
 
 ```properties
-spring.datasource.url=jdbc:postgresql://localhost:5432/infra_db
+spring.datasource.url=jdbc:oracle:thin:@HOST:PORTA:SID
 spring.datasource.username=seu_usuario
 spring.datasource.password=sua_senha
 spring.jpa.hibernate.ddl-auto=update
