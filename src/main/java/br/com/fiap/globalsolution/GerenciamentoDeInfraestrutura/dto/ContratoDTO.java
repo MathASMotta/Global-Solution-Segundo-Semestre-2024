@@ -2,8 +2,8 @@ package br.com.fiap.globalsolution.GerenciamentoDeInfraestrutura.dto;
 
 public class ContratoDTO {
     
-    private String instalacaoUuid;
     private String clienteUuid;
+    private String instalacaoUuid;
     private int timeframe;
 
     // Getters e Setters

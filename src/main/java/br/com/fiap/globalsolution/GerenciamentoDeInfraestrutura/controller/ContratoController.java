@@ -1,7 +1,5 @@
 package br.com.fiap.globalsolution.GerenciamentoDeInfraestrutura.controller;
 
-import java.time.LocalDateTime;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fiap.globalsolution.GerenciamentoDeInfraestrutura.dto.ContratoDTO;
 import br.com.fiap.globalsolution.GerenciamentoDeInfraestrutura.entity.Contrato;
+import br.com.fiap.globalsolution.GerenciamentoDeInfraestrutura.exception.ResourceNotFoundException;
 import br.com.fiap.globalsolution.GerenciamentoDeInfraestrutura.service.ContratoService;
 
 @RestController
@@ -25,17 +24,22 @@ public class ContratoController {
     public ContratoController(ContratoService contratoService) {
         this.contratoService = contratoService;
     }
-    
+
 
     @PostMapping
-    public ResponseEntity<Contrato> criarContrato(@RequestBody ContratoDTO contratoDTO) {
-        Contrato contrato = new Contrato();
-        contrato.setInstalacaoUuid(contratoDTO.getInstalacaoUuid());
-        contrato.setClienteUuid(contratoDTO.getClienteUuid());
-        contrato.setTimeframe(contratoDTO.getTimeframe());
-        contrato.setStatus(true);
-        contrato.setTimestamp(LocalDateTime.now());
-        return new ResponseEntity<>(contratoService.criarContrato(contrato), HttpStatus.CREATED);
+    public ResponseEntity<?> criarContrato(@RequestBody ContratoDTO contratoDTO) {
+        try {
+            Contrato contrato = contratoService.criarContrato(
+                contratoDTO.getClienteUuid(),
+                contratoDTO.getInstalacaoUuid(),
+                contratoDTO.getTimeframe()
+            );
+            return ResponseEntity.status(HttpStatus.CREATED).body(contrato);
+        } catch (ResourceNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
     }
 
 

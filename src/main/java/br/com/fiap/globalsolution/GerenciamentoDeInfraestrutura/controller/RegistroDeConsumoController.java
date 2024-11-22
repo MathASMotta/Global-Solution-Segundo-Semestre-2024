@@ -36,10 +36,13 @@ public class RegistroDeConsumoController {
     }
 
     @GetMapping("/{uuid}")
-    public ResponseEntity<RegistroDeConsumo> buscarRegistroPorId(@PathVariable String uuid) {
-        return registroDeConsumoService.buscarRegistroPorId(uuid)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<?> calcularConsumo(@PathVariable String uuid) {
+        try {
+            var resultado = registroDeConsumoService.calcularConsumo(uuid);
+            return ResponseEntity.ok(resultado);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
     }
 
 }
